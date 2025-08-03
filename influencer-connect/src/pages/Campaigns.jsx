@@ -26,7 +26,7 @@ export default function Campaigns() {
 
   const fetchCampaigns = async () => {
     try {
-      const res = await axios.get("http://localhost:5000/api/campaigns");
+      const res = await axios.get("https://influencerconnect1.onrender.com/api/campaigns");
       setCampaigns(res.data);
     } catch (err) {
       console.error("Error fetching campaigns:", err);
@@ -35,7 +35,7 @@ export default function Campaigns() {
 
   const fetchInfluencers = async () => {
     try {
-      const res = await axios.get("http://localhost:5000/api/influencers");
+      const res = await axios.get("https://influencerconnect1.onrender.com/api/influencers");
       setInfluencers(res.data);
     } catch (err) {
       console.error("Error fetching influencers:", err);
@@ -54,7 +54,7 @@ export default function Campaigns() {
     };
 
     try {
-      await axios.post("http://localhost:5000/api/campaigns", newCampaign);
+      await axios.post("https://influencerconnect1.onrender.com/api/campaigns", newCampaign);
       fetchCampaigns();
       setFormData({ brandName: "", objective: "", budget: "", startDate: "", endDate: "" });
       setSelectedInfluencers([]);
@@ -66,7 +66,7 @@ export default function Campaigns() {
   const handleDelete = async (id) => {
     if (window.confirm("Are you sure you want to delete this campaign?")) {
       try {
-        await axios.delete(`http://localhost:5000/api/campaigns/${id}`);
+        await axios.delete(`https://influencerconnect1.onrender.com/api/campaigns/${id}`);
         fetchCampaigns();
       } catch (err) {
         console.error("Error deleting campaign:", err);
