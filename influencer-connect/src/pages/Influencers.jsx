@@ -20,7 +20,7 @@ export default function Influencers() {
   const [selectedProfile, setSelectedProfile] = useState(null);
 
   useEffect(() => {
-    axios.get("http://localhost:5000/api/influencers").then((res) => {
+    axios.get("https://influencerconnect1.onrender.com/api/influencers").then((res) => {
       setInfluencers(res.data);
       setFiltered(res.data);
     });
@@ -54,14 +54,14 @@ export default function Influencers() {
       instagram: `https://instagram.com/${username}`,
       profilePic: `https://unavatar.io/instagram/${username}`,
     };
-    await axios.post("http://localhost:5000/api/influencers", payload);
-    const res = await axios.get("http://localhost:5000/api/influencers");
+    await axios.post("https://influencerconnect1.onrender.com/api/influencers", payload);
+    const res = await axios.get("https://influencerconnect1.onrender.com/api/influencers");
     setInfluencers(res.data);
     setForm({ name: "", category: "", instagram: "", followers: "", location: "" });
   };
 
   const handleDelete = async (id) => {
-    await axios.delete(`http://localhost:5000/api/influencers/${id}`);
+    await axios.delete(`https://influencerconnect1.onrender.com/api/influencers/${id}`);
     setInfluencers(influencers.filter((i) => i._id !== id));
   };
 
