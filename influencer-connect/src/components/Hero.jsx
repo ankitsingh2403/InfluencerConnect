@@ -14,9 +14,9 @@ const Hero = () => {
         <p className="text-gray-300 mt-6 max-w-md text-lg">
           Discover top influencers and create high-converting collaborations. Join thousands of brands & influencers to amplify your campaigns effortlessly.
         </p>
-        <button className="mt-8 bg-lime-400 hover:bg-lime-500 text-black font-semibold px-6 py-3 rounded-lg transition duration-200">
+        <Link to="/campaigns" className="mt-8 bg-lime-400 hover:bg-lime-500 text-black font-semibold px-6 py-3 rounded-lg transition duration-200">
           Get Started Now →
-        </button>
+        </Link>
       </div>
 
       {/* Right Content: Placeholder Graphic */}
