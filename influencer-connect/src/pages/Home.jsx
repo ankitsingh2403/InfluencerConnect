@@ -4,6 +4,7 @@ import Navbar from '../components/Navbar';
 import Hero from '../components/Hero';
 import ClientsSection from '../components/ClientsSection';
 import ImageGrid from '../components/ImageGrid';
+import Footer from '../components/Footer';
 
 
 const Home = () => {
@@ -16,6 +17,7 @@ const Home = () => {
           <ClientsSection />
           <ImageGrid />
         </section>
+         <Footer />
       </main>
     </div>
   );

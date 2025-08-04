@@ -4,6 +4,7 @@ import Navbar from "../components/Navbar";
 import Select from "react-select";
 import { motion } from "framer-motion";
 import axios from "axios";
+import Footer from "../components/Footer";
 
 export default function Campaigns() {
   const [campaigns, setCampaigns] = useState([]);
@@ -186,6 +187,7 @@ export default function Campaigns() {
           ))}
         </div>
       </div>
+      <Footer />
     </div>
   );
 }
