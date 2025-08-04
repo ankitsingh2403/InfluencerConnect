@@ -271,7 +271,7 @@ export default function Campaigns() {
 
                 {/* Eye icon */}
                 <div className="flex justify-end items-center mt-4 text-lime-400">
-                  <span className="text-sm mr-2 hidden sm:inline">
+                  <span className="text-sm mr-2 hidden sm:inline hover:text-fuchsia-900">
                     View Influencers
                   </span>
                   <FiEye
