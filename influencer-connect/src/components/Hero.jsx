@@ -1,6 +1,8 @@
 // src/components/Hero.jsx
 import React from 'react';
 import img1 from '../assets/img1.png'; // Adjust the import path as necessary
+import { Link } from "react-router-dom";
+
 
 const Hero = () => {
   return (
