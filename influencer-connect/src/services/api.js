@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const API = axios.create({
-  baseURL: 'http://localhost:5000/api', // Your backend URL
+  baseURL: 'https://influencerconnect1.onrender.com/api', // Your backend URL
 });
 
 API.interceptors.request.use((config) => {
