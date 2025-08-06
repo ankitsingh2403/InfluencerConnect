@@ -1,4 +1,4 @@
-// src/components/ClientsSection.jsx
+
 import { useEffect, useState } from "react";
 
 const testimonials = [
