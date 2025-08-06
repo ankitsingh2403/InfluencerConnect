@@ -47,35 +47,41 @@ export default function AdminDashboard() {
           <h1 className="text-4xl font-bold text-lime-400">
             Welcome, {admin.name || "Admin"}
           </h1>
-          {/* <button
+          <button
             onClick={handleLogout}
             className="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600 transition"
           >
             Logout
-          </button> */}
+          </button>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          <div className="bg-gradient-to-br from-gray-900 to-gray-800 p-6 rounded-xl border border-lime-500 shadow-lg hover:scale-105 transition-transform">
+          <div className="bg-gradient-to-br from-gray-900 to-gray-800 p-6 rounded-xl border border-lime-500 shadow-lg hover:scale-105 transition-transform cursor-pointer">
             <h2 className="text-2xl font-semibold mb-2 text-lime-400">Manage Influencers</h2>
             <p className="text-gray-300">View, approve, or remove influencer profiles.</p>
           </div>
 
-          <div className="bg-gradient-to-br from-gray-900 to-gray-800 p-6 rounded-xl border border-lime-500 shadow-lg hover:scale-105 transition-transform">
+          <div className="bg-gradient-to-br from-gray-900 to-gray-800 p-6 rounded-xl border border-lime-500 shadow-lg hover:scale-105 transition-transform cursor-pointer">
             <h2 className="text-2xl font-semibold mb-2 text-lime-400">Brand Collaborations</h2>
             <p className="text-gray-300">Track and approve brand-influencer campaigns.</p>
           </div>
 
-          <div className="bg-gradient-to-br from-gray-900 to-gray-800 p-6 rounded-xl border border-lime-500 shadow-lg hover:scale-105 transition-transform">
+          <div
+            onClick={() => {
+              console.log("Navigating to schedule meeting");
+              navigate("/admin/schedule-meeting");
+            }}
+            className="bg-gradient-to-br from-gray-900 to-gray-800 p-6 rounded-xl border border-lime-500 shadow-lg hover:scale-105 transition-transform cursor-pointer"
+          >
             <h2 className="text-2xl font-semibold mb-2 text-lime-400">Schedule Meetings</h2>
             <p className="text-gray-300">Book calls or appointments between influencers and brands.</p>
           </div>
         </div>
-
-        {/* Optional: Add more admin widgets or charts here */}
       </div>
 
       <Footer />
     </div>
   );
 }
+
+
