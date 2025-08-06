@@ -1,11 +1,15 @@
-import { useState } from 'react';
+// src/pages/Login.jsx
+import { useState, useContext } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
+import { AuthContext } from '../context/AuthContext';
 import API from '../services/api';
 
 const Login = () => {
   const [form, setForm] = useState({ email: '', password: '' });
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
+
+  const { login } = useContext(AuthContext);
   const navigate = useNavigate();
 
   const handleChange = (e) =>
@@ -14,13 +18,14 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
+    setError('');
+
     try {
       const res = await API.post('/auth/login', form);
-      console.log('Login response:', res.data); // Debug log
+      console.log('Login response:', res.data);
 
       if (res.data?.token && res.data?.user) {
-        localStorage.setItem('token', res.data.token);
-        localStorage.setItem('user', JSON.stringify(res.data.user));
+        login(res.data.user, res.data.token);
         navigate('/dashboard');
       } else {
         setError('Invalid response from server');
