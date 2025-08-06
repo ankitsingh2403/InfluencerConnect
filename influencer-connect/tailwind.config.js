@@ -8,4 +8,10 @@ export default {
     extend: {},
   },
   plugins: [],
+  extend: {
+  animation: {
+    'bounce-slow': 'bounce 3s infinite',
+  },
+}
+
 };
