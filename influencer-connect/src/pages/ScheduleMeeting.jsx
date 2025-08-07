@@ -168,22 +168,22 @@ export default function ScheduleMeeting() {
             <img
               src="https://www.influencer.in/wp-content/uploads/2021/08/blog-1-copy.jpg"
               alt="Meeting"
-              className="rounded-lg object-cover"
+              className="rounded-lg w-full h-40 object-cover"
             />
             <img
               src="https://www.thetilt.com/wp-content/uploads/2022/01/influencer.jpg"
               alt="Business"
-              className="rounded-lg object-cover"
+              className="rounded-lg w-full h-40 object-cover"
             />
             <img
               src="https://static.vecteezy.com/system/resources/previews/007/938/818/non_2x/concept-illustration-of-two-business-partners-handshaking-meeting-partnership-business-deal-agreement-signing-a-contract-flat-cartoon-style-free-vector.jpg"
               alt="Influencer"
-              className="rounded-lg object-cover"
+              className="rounded-lg w-full h-40 object-cover"
             />
             <img
               src="https://i.pinimg.com/736x/67/2b/80/672b8012fc8b3727e98ecce3152ab127.jpg"
               alt="Deal"
-              className="rounded-lg object-cover"
+              className="rounded-lg w-full h-40 object-cover"
             />
           </div>
         </div>
@@ -201,11 +201,21 @@ export default function ScheduleMeeting() {
               {renderStatusSeal(m.status)}
 
               <div className="space-y-1">
-                <p><strong>Brand:</strong> {m.brandEmail}</p>
-                <p><strong>Influencer:</strong> {m.influencerEmail}</p>
-                <p><strong>Date:</strong> {m.date}</p>
-                <p><strong>Time:</strong> {m.time}</p>
-                <p><strong>Mode:</strong> {m.mode}</p>
+                <p>
+                  <strong>Brand:</strong> {m.brandEmail}
+                </p>
+                <p>
+                  <strong>Influencer:</strong> {m.influencerEmail}
+                </p>
+                <p>
+                  <strong>Date:</strong> {m.date}
+                </p>
+                <p>
+                  <strong>Time:</strong> {m.time}
+                </p>
+                <p>
+                  <strong>Mode:</strong> {m.mode}
+                </p>
                 <p>
                   <strong>Details:</strong>{" "}
                   {m.mode === "offline" ? (
