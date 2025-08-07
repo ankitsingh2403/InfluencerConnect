@@ -166,12 +166,12 @@ export default function ScheduleMeeting() {
           {/* Right Side Image Card (only visible on md+) */}
           <div className="hidden md:grid grid-cols-2 gap-4 w-80">
             <img
-              src="https://www.influencer.in/wp-content/uploads/2021/08/blog-1-copy.jpg"
+              src="https://www.influencer.in/wp-content/themes/influencer-2022/images/livecampaigns-banner.png"
               alt="Meeting"
               className="rounded-lg w-full h-40 object-cover"
             />
             <img
-              src="https://www.thetilt.com/wp-content/uploads/2022/01/influencer.jpg"
+              src="https://openinfluence.com/wp-content/uploads/Fashion-Header-Image.jpg"
               alt="Business"
               className="rounded-lg w-full h-40 object-cover"
             />
