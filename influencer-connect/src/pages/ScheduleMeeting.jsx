@@ -55,7 +55,7 @@ export default function ScheduleMeeting() {
   };
 
   const updateStatus = async (id, newStatus) => {
-    await API.put(`/meetings/${id}/status`, { status: newStatus });
+    await API.patch(`/meetings/${id}/status`, { status: newStatus });
     fetchMeetings();
   };
 
@@ -166,17 +166,17 @@ export default function ScheduleMeeting() {
           {/* Right Side Image Card (only visible on md+) */}
           <div className="hidden md:flex flex-col gap-4 w-80">
             <img
-              src="https://source.unsplash.com/400x250/?meeting,teamwork"
+              src="https://www.shutterstock.com/image-vector/two-business-man-eating-lunch-600nw-688775614.jpg"
               alt="Meeting"
               className="rounded-lg object-cover"
             />
             <img
-              src="https://source.unsplash.com/400x250/?business,collaboration"
+              src="https://static.vecteezy.com/system/resources/previews/007/938/818/non_2x/concept-illustration-of-two-business-partners-handshaking-meeting-partnership-business-deal-agreement-signing-a-contract-flat-cartoon-style-free-vector.jpg"
               alt="Business"
               className="rounded-lg object-cover"
             />
             <img
-              src="https://source.unsplash.com/400x250/?deal,handshake"
+              src="https://i.pinimg.com/736x/67/2b/80/672b8012fc8b3727e98ecce3152ab127.jpg"
               alt="Deal"
               className="rounded-lg object-cover"
             />
