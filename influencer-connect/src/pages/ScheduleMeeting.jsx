@@ -164,15 +164,20 @@ export default function ScheduleMeeting() {
           </form>
 
           {/* Right Side Image Card (only visible on md+) */}
-          <div className="hidden md:flex flex-col gap-4 w-80">
+          <div className="hidden md:grid grid-cols-2 gap-4 w-80">
             <img
-              src="https://www.shutterstock.com/image-vector/two-business-man-eating-lunch-600nw-688775614.jpg"
+              src="https://www.influencer.in/wp-content/uploads/2021/08/blog-1-copy.jpg"
               alt="Meeting"
               className="rounded-lg object-cover"
             />
             <img
-              src="https://static.vecteezy.com/system/resources/previews/007/938/818/non_2x/concept-illustration-of-two-business-partners-handshaking-meeting-partnership-business-deal-agreement-signing-a-contract-flat-cartoon-style-free-vector.jpg"
+              src="https://www.thetilt.com/wp-content/uploads/2022/01/influencer.jpg"
               alt="Business"
+              className="rounded-lg object-cover"
+            />
+            <img
+              src="https://static.vecteezy.com/system/resources/previews/007/938/818/non_2x/concept-illustration-of-two-business-partners-handshaking-meeting-partnership-business-deal-agreement-signing-a-contract-flat-cartoon-style-free-vector.jpg"
+              alt="Influencer"
               className="rounded-lg object-cover"
             />
             <img
@@ -221,7 +226,7 @@ export default function ScheduleMeeting() {
               <div className="mt-4 flex flex-wrap gap-2">
                 <button
                   onClick={() => updateStatus(m._id, "successful")}
-                  className="bg-green-600 hover:bg-green-700 text-white px-3 py-1 rounded"
+                  className="bg-lime-400 hover:bg-green-700 text-white px-3 py-1 rounded"
                 >
                   Mark as Successful
                 </button>
