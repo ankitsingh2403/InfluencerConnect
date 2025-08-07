@@ -6,7 +6,7 @@ exports.scheduleMeeting = async (req, res) => {
     const meeting = new Meeting(req.body);
     await meeting.save();
 
-    // Email body template
+    // Email body
     const emailBody = `
 🌟 Great News! Your Meeting is Confirmed via InfluencerConnect 🌟
 
@@ -53,5 +53,24 @@ exports.getMeetings = async (req, res) => {
     res.json(meetings);
   } catch (error) {
     res.status(500).json({ error: "Unable to fetch meetings" });
+  }
+};
+
+// NEW: Update meeting status
+exports.updateMeetingStatus = async (req, res) => {
+  try {
+    const { status } = req.body;
+    const meetingId = req.params.id;
+
+    const updated = await Meeting.findByIdAndUpdate(meetingId, { status }, { new: true });
+
+    if (!updated) {
+      return res.status(404).json({ error: "Meeting not found" });
+    }
+
+    res.json({ message: "Status updated successfully", meeting: updated });
+  } catch (error) {
+    console.error("Error updating meeting status:", error);
+    res.status(500).json({ error: "Failed to update meeting status" });
   }
 };

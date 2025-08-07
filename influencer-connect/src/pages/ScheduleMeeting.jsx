@@ -54,84 +54,134 @@ export default function ScheduleMeeting() {
     fetchMeetings();
   };
 
+  const updateStatus = async (id, newStatus) => {
+    await API.put(`/meetings/${id}/status`, { status: newStatus });
+    fetchMeetings();
+  };
+
+  const renderStatusSeal = (status) => {
+    if (status === "successful") {
+      return (
+        <div className="absolute top-2 right-2 bg-green-600 text-white px-2 py-1 text-xs font-bold rounded-full">
+          Successful Deal
+        </div>
+      );
+    } else if (status === "cancelled") {
+      return (
+        <div className="absolute top-2 right-2 bg-red-600 text-white px-2 py-1 text-xs font-bold rounded-full">
+          Cancelled Deal
+        </div>
+      );
+    } else {
+      return (
+        <div className="absolute top-2 right-2 bg-yellow-500 text-black px-2 py-1 text-xs font-bold rounded-full">
+          Pending
+        </div>
+      );
+    }
+  };
+
   return (
     <div className="bg-black min-h-screen text-white">
       <Navbar />
 
-      <div className="p-6 max-w-5xl mx-auto">
+      <div className="p-6 max-w-6xl mx-auto">
         <h1 className="text-3xl font-bold text-lime-400 mb-6">
           Schedule a Meeting
         </h1>
 
-        <form
-          onSubmit={handleSubmit}
-          className="grid grid-cols-1 md:grid-cols-2 gap-4 bg-gray-900 p-6 rounded-xl shadow-xl"
-        >
-          <input
-            name="brandEmail"
-            type="email"
-            value={form.brandEmail}
-            placeholder="Brand Email"
-            className="p-3 bg-gray-800 rounded"
-            onChange={handleChange}
-          />
-          <input
-            name="influencerEmail"
-            type="email"
-            value={form.influencerEmail}
-            placeholder="Influencer Email"
-            className="p-3 bg-gray-800 rounded"
-            onChange={handleChange}
-          />
-          <input
-            name="date"
-            type="date"
-            value={form.date}
-            className="p-3 bg-gray-800 rounded"
-            onChange={handleChange}
-          />
-          <input
-            name="time"
-            type="time"
-            value={form.time}
-            className="p-3 bg-gray-800 rounded"
-            onChange={handleChange}
-          />
-          <select
-            name="mode"
-            value={form.mode}
-            className="p-3 bg-gray-800 rounded"
-            onChange={handleChange}
+        {/* Updated Layout: Form + Image Card Side-by-Side */}
+        <div className="bg-gray-900 p-6 rounded-xl shadow-xl md:flex gap-6">
+          {/* Form Section */}
+          <form
+            onSubmit={handleSubmit}
+            className="flex-1 grid grid-cols-1 gap-4"
           >
-            <option value="online">Online</option>
-            <option value="offline">Offline</option>
-          </select>
-
-          {form.mode === "offline" ? (
             <input
-              name="location"
-              value={form.location}
-              placeholder="Location details"
+              name="brandEmail"
+              type="email"
+              value={form.brandEmail}
+              placeholder="Brand Email"
               className="p-3 bg-gray-800 rounded"
               onChange={handleChange}
             />
-          ) : (
             <input
-              name="link"
-              value={form.link}
-              placeholder="Zoom/Meet link"
+              name="influencerEmail"
+              type="email"
+              value={form.influencerEmail}
+              placeholder="Influencer Email"
               className="p-3 bg-gray-800 rounded"
               onChange={handleChange}
             />
-          )}
+            <input
+              name="date"
+              type="date"
+              value={form.date}
+              className="p-3 bg-gray-800 rounded"
+              onChange={handleChange}
+            />
+            <input
+              name="time"
+              type="time"
+              value={form.time}
+              className="p-3 bg-gray-800 rounded"
+              onChange={handleChange}
+            />
+            <select
+              name="mode"
+              value={form.mode}
+              className="p-3 bg-gray-800 rounded"
+              onChange={handleChange}
+            >
+              <option value="online">Online</option>
+              <option value="offline">Offline</option>
+            </select>
 
-          <button
-            type="submit"
-            className="col-span-full bg-lime-500 hover:bg-lime-600 text-black font-bold py-3 rounded"
-          >
-            Schedule Meeting
-          </button>
-        </form>
+            {form.mode === "offline" ? (
+              <input
+                name="location"
+                value={form.location}
+                placeholder="Location details"
+                className="p-3 bg-gray-800 rounded"
+                onChange={handleChange}
+              />
+            ) : (
+              <input
+                name="link"
+                value={form.link}
+                placeholder="Zoom/Meet link"
+                className="p-3 bg-gray-800 rounded"
+                onChange={handleChange}
+              />
+            )}
+
+            <button
+              type="submit"
+              className="bg-lime-500 hover:bg-lime-600 text-black font-bold py-3 rounded"
+            >
+              Schedule Meeting
+            </button>
+          </form>
+
+          {/* Right Side Image Card (only visible on md+) */}
+          <div className="hidden md:flex flex-col gap-4 w-80">
+            <img
+              src="https://source.unsplash.com/400x250/?meeting,teamwork"
+              alt="Meeting"
+              className="rounded-lg object-cover"
+            />
+            <img
+              src="https://source.unsplash.com/400x250/?business,collaboration"
+              alt="Business"
+              className="rounded-lg object-cover"
+            />
+            <img
+              src="https://source.unsplash.com/400x250/?deal,handshake"
+              alt="Deal"
+              className="rounded-lg object-cover"
+            />
+          </div>
+        </div>
 
         <h2 className="text-2xl font-semibold text-lime-400 mt-10 mb-4">
           Scheduled Meetings
@@ -141,24 +191,16 @@ export default function ScheduleMeeting() {
           {meetings.map((m) => (
             <div
               key={m._id}
-              className="bg-gray-800 border border-lime-500 p-4 rounded-xl shadow-lg transform transition duration-300 hover:scale-105 hover:bg-gray-700"
+              className="relative bg-gray-800 border border-lime-500 p-4 rounded-xl shadow-lg transform transition duration-300 hover:scale-105 hover:bg-gray-700"
             >
+              {renderStatusSeal(m.status)}
+
               <div className="space-y-1">
-                <p>
-                  <strong>Brand:</strong> {m.brandEmail}
-                </p>
-                <p>
-                  <strong>Influencer:</strong> {m.influencerEmail}
-                </p>
-                <p>
-                  <strong>Date:</strong> {m.date}
-                </p>
-                <p>
-                  <strong>Time:</strong> {m.time}
-                </p>
-                <p>
-                  <strong>Mode:</strong> {m.mode}
-                </p>
+                <p><strong>Brand:</strong> {m.brandEmail}</p>
+                <p><strong>Influencer:</strong> {m.influencerEmail}</p>
+                <p><strong>Date:</strong> {m.date}</p>
+                <p><strong>Time:</strong> {m.time}</p>
+                <p><strong>Mode:</strong> {m.mode}</p>
                 <p>
                   <strong>Details:</strong>{" "}
                   {m.mode === "offline" ? (
@@ -176,18 +218,38 @@ export default function ScheduleMeeting() {
                 </p>
               </div>
 
-              <button
-                onClick={() => handleDelete(m._id)}
-                className="mt-4 bg-red-600 hover:bg-red-700 text-white px-4 py-1 rounded"
-              >
-                Delete
-              </button>
+              <div className="mt-4 flex flex-wrap gap-2">
+                <button
+                  onClick={() => updateStatus(m._id, "successful")}
+                  className="bg-green-600 hover:bg-green-700 text-white px-3 py-1 rounded"
+                >
+                  Mark as Successful
+                </button>
+                <button
+                  onClick={() => updateStatus(m._id, "cancelled")}
+                  className="bg-red-600 hover:bg-red-700 text-white px-3 py-1 rounded"
+                >
+                  Cancel Deal
+                </button>
+                <button
+                  onClick={() => updateStatus(m._id, "pending")}
+                  className="bg-yellow-500 hover:bg-yellow-600 text-black px-3 py-1 rounded"
+                >
+                  Mark as Pending
+                </button>
+                <button
+                  onClick={() => handleDelete(m._id)}
+                  className="bg-gray-600 hover:bg-gray-700 text-white px-3 py-1 rounded"
+                >
+                  Delete
+                </button>
+              </div>
             </div>
           ))}
         </div>
       </div>
 
-      {/* WhatsApp Floating Icon with Animation and Text */}
+      {/* WhatsApp Floating Icon */}
       <a
         href="https://wa.me/919601675408"
         target="_blank"

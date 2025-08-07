@@ -1,3 +1,4 @@
+
 const mongoose = require("mongoose");
 
 const meetingSchema = new mongoose.Schema({
@@ -7,7 +8,12 @@ const meetingSchema = new mongoose.Schema({
   time: String,
   mode: String,
   location: String,
-  link: String
+  link: String,
+  status: {
+    type: String,
+    enum: ["pending", "successful", "cancelled"],
+    default: "pending",
+  },
 });
 
 module.exports = mongoose.model("Meeting", meetingSchema);
